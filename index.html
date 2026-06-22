@@ -479,7 +479,7 @@
   <div class="container">
     <p class="section-label">02 / Capabilities</p>
     <div class="gold-line"></div>
-    <h2 class="section-title">Six layers of intelligence,<br/>activated in one call.</h2>
+    <h2 class="section-title">Seven layers of intelligence,<br/>activated in one call.</h2>
     <p class="section-desc">GUARDIAN is engineered for reliability under the most extreme conditions — zero latency, zero user input, maximum data.</p>
 
     <div class="features-grid">
@@ -516,7 +516,7 @@
       <div class="feature">
         <div class="feature-icon">👤</div>
         <h3>Facial Recognition</h3>
-        <p>AI instantly matches faces against criminal databases. Officers know exactly who they're dealing with — before they arrive on scene.</p>
+        <p>AI instantly matches faces against criminal databases. If a match is found, officers know exactly who they're dealing with — before they arrive on scene.</p>
       </div>
     </div>
   </div>
@@ -569,10 +569,13 @@
       <p class="section-label" style="text-align:center">Join the Mission</p>
       <h2>Be first to know<br/>when GUARDIAN launches.</h2>
       <p>Whether you're a potential partner, investor, government agency, or early adopter — we want to hear from you.</p>
-      <form class="email-form" onsubmit="handleSubmit(event)">
+      <form class="email-form" onsubmit="handleSubmit(event)" id="access-form">
+        <input type="text" placeholder="Your name" required id="name-input" style="margin-bottom:10px;" />
         <input type="email" placeholder="your@email.com" required id="email-input" />
-        <button type="submit">Request Access</button>
+        <input type="hidden" name="source" value="guardian-sos.com" />
+        <button type="submit" id="submit-btn">Request Access</button>
       </form>
+      <p id="form-success" style="display:none; color:#27ae60; font-weight:600; margin-top:16px;">✓ You're on the list. We'll be in touch.</p>
       <p class="form-note">No spam. We'll contact you when GUARDIAN is ready for pilots.</p>
     </div>
   </div>
@@ -587,7 +590,7 @@
     <p class="section-desc">GUARDIAN was not conceived in a boardroom. It was born from 20 years on the front lines of security.</p>
 
     <div class="founder-card">
-      <div class="founder-avatar">EG</div>
+      <div class="founder-avatar" translate="no">EG</div>
       <div class="founder-info">
         <h3>Emir Golubovic</h3>
         <p class="role">Founder & CEO — GUARDIAN · Also founder of Bizzy Pro (AI SaaS)</p>
@@ -606,17 +609,32 @@
 </footer>
 
 <script>
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    const name  = document.getElementById('name-input').value;
     const email = document.getElementById('email-input').value;
-    const btn = e.target.querySelector('button');
-    btn.textContent = '✓ You\'re on the list';
-    btn.style.background = '#27ae60';
-    btn.style.color = '#fff';
+    const btn   = document.getElementById('submit-btn');
+
+    btn.textContent = 'Sending…';
     btn.disabled = true;
-    document.getElementById('email-input').disabled = true;
-    // In production: send to your backend / Supabase
-    console.log('Registered:', email);
+
+    try {
+      const res = await fetch('https://formspree.io/f/xbdvjwll', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, source: 'guardian-sos.com' }),
+      });
+      if (res.ok) {
+        document.getElementById('access-form').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        btn.textContent = 'Error — try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Error — try again';
+      btn.disabled = false;
+    }
   }
 
   // Fade in on scroll
