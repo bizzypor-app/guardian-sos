@@ -80,9 +80,9 @@
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(192,57,43,0.15);
-      border: 1px solid rgba(192,57,43,0.4);
-      color: #e74c3c;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.45);
+      color: var(--gold2);
       font-size: 11px; font-weight: 700; letter-spacing: 2px;
       padding: 6px 16px; border-radius: 4px;
       margin-bottom: 32px;
@@ -226,6 +226,50 @@
       margin-bottom: 10px;
     }
     .feature p { font-size: 14px; color: var(--steel); line-height: 1.7; }
+
+    /* ── PROTOTYPE STATUS ── */
+    .proto-lead {
+      font-size: 17px; color: #B8CCE0; line-height: 1.8;
+      max-width: 660px; margin-bottom: 48px;
+    }
+    .proto-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1px;
+      background: rgba(201,168,76,0.18);
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+    .proto-item {
+      background: var(--navy);
+      padding: 30px 28px;
+    }
+    .proto-item .proto-check {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 12px;
+    }
+    .proto-item .proto-check svg { width: 18px; height: 18px; color: var(--gold); flex: none; }
+    .proto-item h3 {
+      font-family: 'Sora', sans-serif;
+      font-size: 13px; font-weight: 700;
+      color: var(--gold2); letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0;
+    }
+    .proto-item p { font-size: 14px; color: var(--steel); line-height: 1.7; }
+    .proto-note {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--navy2);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 22px 26px;
+      max-width: 760px;
+    }
+    .proto-note svg { width: 20px; height: 20px; color: var(--gold); flex: none; margin-top: 2px; }
+    .proto-note p { font-size: 15px; color: #B8CCE0; line-height: 1.75; margin: 0; }
+    .proto-note strong { color: var(--gold2); font-weight: 600; }
 
     /* ── HOW IT WORKS ── */
     .how-bg { background: var(--navy); }
@@ -404,7 +448,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">Concept Stage · Seeking Partners</div>
+  <div class="hero-badge">Working Prototype · Seeking Partners</div>
   <h1>GUARDIAN</h1>
   <p class="hero-sub">Emergency Response Intelligence System</p>
   <div class="hero-divider"></div>
@@ -568,6 +612,40 @@
   </div>
 </section>
 
+<!-- PROTOTYPE STATUS -->
+<section id="prototype">
+  <div class="container">
+    <p class="section-label">04 / Current Status</p>
+    <div class="gold-line"></div>
+    <h2 class="section-title">Phase I is no longer a plan.<br/>It is running.</h2>
+    <p class="proto-lead">A working GUARDIAN prototype has been built and tested end to end on iOS. The core evidence chain — capture, locate, secure, notify — functions today, in a bilingual interface, on real hardware.</p>
+
+    <div class="proto-grid">
+      <div class="proto-item">
+        <div class="proto-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.4 12.2l2.4 2.4 4.8-4.8"/></svg><h3>Automatic Video Capture</h3></div>
+        <p>Activation triggers the rear camera and records a timestamped 30-second sequence of the scene — no further user input needed.</p>
+      </div>
+      <div class="proto-item">
+        <div class="proto-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.4 12.2l2.4 2.4 4.8-4.8"/></svg><h3>Precise Location Capture</h3></div>
+        <p>GPS coordinates are captured at the moment of activation and stored alongside the recording.</p>
+      </div>
+      <div class="proto-item">
+        <div class="proto-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.4 12.2l2.4 2.4 4.8-4.8"/></svg><h3>Encrypted Evidence Vault</h3></div>
+        <p>Every recording is uploaded to private, access-controlled cloud storage and retrievable only by the account holder.</p>
+      </div>
+      <div class="proto-item">
+        <div class="proto-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.4 12.2l2.4 2.4 4.8-4.8"/></svg><h3>Emergency Contact Alert</h3></div>
+        <p>A stored emergency contact is notified with the incident location immediately after the recording completes.</p>
+      </div>
+    </div>
+
+    <div class="proto-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7.5 3v5.4c0 4.5-3.1 8.4-7.5 9.6-4.4-1.2-7.5-5.1-7.5-9.6V6z"/><path d="M9 12.2l2 2 4.2-4.2"/></svg>
+      <p><strong>Available for demonstration.</strong> The prototype can be shown live to prospective pilot partners, agencies, and investors. Automated dispatch integration and call-audio capture remain deliberately out of scope pending regulatory and legal review.</p>
+    </div>
+  </div>
+</section>
+
 <!-- CTA / NOTIFY -->
 <section class="cta-section" id="notify">
   <div class="container">
@@ -590,7 +668,7 @@
 <!-- FOUNDER -->
 <section id="founder">
   <div class="container">
-    <p class="section-label">04 / The Founder</p>
+    <p class="section-label">05 / The Founder</p>
     <div class="gold-line"></div>
     <h2 class="section-title">Built by someone who has<br/>seen what's missing.</h2>
     <p class="section-desc">GUARDIAN was not conceived in a boardroom. It was born from two decades on the front lines of European protection operations.</p>
